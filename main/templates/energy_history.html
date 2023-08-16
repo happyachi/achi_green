@@ -1,0 +1,50 @@
+{% load plotly_dash %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> 
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <h1>2023-01-01至2023-03-31歷史發電資料</h1>
+                <div class="col-sm-6">
+                    {% for i in fig_list %}
+                    <h2>{{i.0.1}}</h2>
+                    <div id="pie-chart-container{{i.0.1}}">
+                        <script type="text/javascript">
+                            var plotlyData = {{ i.1 |safe }};
+                            Plotly.newPlot('pie-chart-container{{i.0.1}}', plotlyData.data, plotlyData.layout);
+                        </script>
+                    </div>
+                    {% endfor%}
+                </div>
+                <div class="col-sm-6">
+                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg">
+                    <h1>原始歷史數據</h1>
+                    <table class="table-sm">
+                        {% for i in list %}
+                        <tr>
+                            {% for j in i %}
+                            <td>{{ j }}</td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+    </body>
+</html>

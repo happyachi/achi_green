@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+        
+        <title>計算換家電划算嗎？</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <h1>計算換燈具划算嗎？</h1>
+                <div class="col-lg">
+                    近年LED燈具發光效率越來越好，1瓦發光效率約為120流明<br>
+                    同等亮度的情況下，LED燈泡的耗電量約為省電燈泡的一半<br>
+                    目前LED燈泡13瓦售價約為1～200就買的到<br>
+                    市售LED燈泡保固約為1～3年，使用壽命比省電燈泡還久<br>
+                    LED燈管也是比傳統燈管還省電<br>
+                    越早更換成LED燈泡越划算喔～<br>
+                    <hr>
+                </div>
+                <div class="col-lg">
+                    <table class="table-sm">
+                        <tr>
+                            <td>家裡舊的燈具的款式？</td>
+                            <td>
+                                <div class="selection-container">
+                                    <select class="appliance-select" >
+                                        <option value="" disabled selected>請選擇</option>
+                                    </select>
+                                    <select class="light-select" disabled id="a1">
+                                        <option value="" disabled selected>Select a light</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>想添購的款式</td>
+                            <td>
+                                <div class="selection-container2">
+                                    <select class="appliance-select2" >
+                                        <option value="" disabled selected>請選擇</option>
+                                    </select>
+                            
+                                    <select class="light-select2" disabled id="a2">
+                                        <option value="" disabled selected>Select a light</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td>新舊燈具差<em id='AAId'></em>瓦</td>
+                        </tr>
+                        <tr>
+                            <td>平均每天使用時間(以小時計)</td>
+                            <td><input type="text" id='a3'></td>
+                            <td>一年下來可以約省下<em id='BBId'></em>度的電</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>相當於省下$<em id='CCId'></em>的電費</td>
+                        </tr>
+                        <tr>
+                            <td>新的燈具約費用</td>
+                            <td><input type="text" id='a4'></td>
+                            <td>大約只要<em id='DDId'></em>年就能回本喔！</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        
+                    </table>
+                    <p>LED燈泡耗電量約一半喔</p>
+                    <p>※以每度電5元計算</p>
+                    <p><button onclick="call()">計算</button></p>       
+                </div>
+            </div>
+        </div>
+        
+        <script >
+            var lightList = {{ data_json | safe }};
+            {% include  'math_cal.html' %}
+        </script>
+    </body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>各地溫度</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+        
+    </head>
+    <body>
+        <div class="container">
+            <h1>{{ date_time_2.1.0 }}年{{ date_time_2.1.1 }}月{{ date_time_2.1.2 }}日{{ date_time_2.2.0 }}時{{ date_time_2.2.1 }}分，即時溫度資料!</h1>
+            <div class="row-lg">
+                <div class="col-2">
+                    <img src="{{ image_name }}" />
+                </div>
+                <div class="col-10">
+                    <table>
+                    {% for i in value2 %}
+                    <tr>
+                        {% for j in i %}
+                            {% if j > 35 %}
+                                <td  align="center" style="font-size:4px; color:#8600FF; font-weight:bold" height="15px" width="5px">
+                                    {{ j |cut:"-999.0" |cut:"None" | default:"&nbsp;&nbsp;&nbsp;&nbsp;"}}
+                                </td>
+                            {% elif j > 30 %}
+                                <td  align="center" style="font-size:4px; color:    #FF0000; font-weight:bold" height="15px" width="5px">
+                                    {{ j |cut:"-999.0" |cut:"None" | default:"&nbsp;&nbsp;&nbsp;&nbsp;"}}
+                                </td>
+                            {% elif j > 25 %}
+                                <td align="center" style="font-size:4px; color:	orange; font-weight:bold" height="15px" width="5px">
+                                    {{ j |cut:"-999.0" |cut:"None" | default:"&nbsp;&nbsp;&nbsp;&nbsp;"}}
+                                </td>
+                            {% elif j > 20 %}
+                                <td align="center" style="font-size:4px; color:green; font-weight:bold" height="15px" width="5px">
+                                    {{ j |cut:"-999.0" |cut:"None" | default:"&nbsp;&nbsp;&nbsp;&nbsp;"}}
+                                </td>
+                            {% elif j > 15 %}
+                                <td align="center" style="font-size:4px; color:blue; font-weight:bold" height="15px" width="5px">
+                                    {{ j |cut:"-999.0" |cut:"None" | default:"&nbsp;&nbsp;&nbsp;&nbsp;"}}
+                                </td>
+                            {% else %}
+                                <td align="center" style="font-size:4px; color:	#1E90FF; font-weight:bold" height="15px" width="5px">
+                                    {{ j |cut:"-999.0" |cut:"None" | default:"&nbsp;&nbsp;&nbsp;&nbsp;"}}
+                                </td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                    </table>
+                </div>
+                
+            </div>
+        </div>
+    </body>
+</html>

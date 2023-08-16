@@ -1,0 +1,106 @@
+
+            
+            function populateLightSelect(applianceSelect, lightSelect) {
+                lightSelect.innerHTML = "";
+                var selectedAppliance = applianceSelect.value;
+                var lights = lightList[selectedAppliance];
+    
+                for (var light in lights) {
+                    if (lights.hasOwnProperty(light)) {
+                        var lightOption = document.createElement("option");
+                        lightOption.value = lights[light].value;
+                        lightOption.text = lights[light].name;
+                        lightSelect.appendChild(lightOption);
+                    }
+                }
+    
+                lightSelect.disabled = false;
+            }
+    
+            function handleLightSelect(applianceSelect, lightSelect) {
+                var selectedLightValue = lightSelect.value;
+                var selectedLightName = lightSelect.options[lightSelect.selectedIndex].text;
+                console.log("Selected appliance:", applianceSelect.value);
+                console.log("Selected light:", selectedLightName);
+                console.log("Selected value:", selectedLightValue);
+            }
+    
+            function setupSelection(container) {
+                var applianceSelect = container.querySelector('.appliance-select');
+                var lightSelect = container.querySelector('.light-select');
+    
+                for (var appliance in lightList) {
+                    if (lightList.hasOwnProperty(appliance)) {
+                        var applianceOption = document.createElement("option");
+                        applianceOption.value = appliance;
+                        applianceOption.text = appliance;
+                        applianceSelect.appendChild(applianceOption);
+                    }
+                }
+    
+                applianceSelect.addEventListener("change", function() {
+                    populateLightSelect(applianceSelect, lightSelect);
+                });
+    
+                lightSelect.addEventListener("change", function() {
+                    handleLightSelect(applianceSelect, lightSelect);
+                });
+
+                if (applianceSelect && lightSelect) {
+                    // 触发第一个家电选项的change事件，以生成对应的灯具选项
+                    applianceSelect.dispatchEvent(new Event('change'));
+                
+                    // 预设第一个家电选项和第一个灯具选项为默认选择
+                    applianceSelect.selectedIndex = 0;
+                    lightSelect.selectedIndex = 1;
+                }
+            }
+            var selectionContainers = document.querySelectorAll('.selection-container');
+            selectionContainers.forEach(container => setupSelection(container));
+
+            function setupSelection2(container) {
+                var applianceSelect = container.querySelector('.appliance-select2');
+                var lightSelect = container.querySelector('.light-select2');
+            
+                for (var appliance in lightList) {
+                    if (lightList.hasOwnProperty(appliance)) {
+                        var applianceOption = document.createElement("option");
+                        applianceOption.value = appliance;
+                        applianceOption.text = appliance;
+                        applianceSelect.appendChild(applianceOption);
+                    }
+                }
+            
+                applianceSelect.addEventListener("change", function() {
+                    populateLightSelect(applianceSelect, lightSelect);
+                });
+            
+                lightSelect.addEventListener("change", function() {
+                    handleLightSelect(applianceSelect, lightSelect);
+                });
+            
+                if (applianceSelect && lightSelect) {
+                    // 设置默认选项
+                    applianceSelect.dispatchEvent(new Event('change'));
+                    applianceSelect.selectedIndex = 0;
+                    lightSelect.selectedIndex = 1;
+                }
+            }
+            var selectionContainers2 = document.querySelectorAll('.selection-container2');
+            selectionContainers2.forEach(container => setupSelection2(container));
+            
+            function call(){
+                var numberA =  parseFloat(document.getElementById('a1').value);
+                var numberB =  parseFloat(document.getElementById('a2').value);
+                var numberC =  parseFloat(document.getElementById('a3').value);
+                var numberD =  parseFloat(document.getElementById('a4').value);
+                var a = numberA-numberB;
+                var b = a*numberC*365/1000;
+                var c = b*5;
+                var d = numberD/c;
+                document.getElementById('AAId').textContent = a;
+                document.getElementById('BBId').textContent = b;
+                document.getElementById('CCId').textContent = c;
+                document.getElementById('DDId').textContent = d;
+            }
+
