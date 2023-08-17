@@ -19,7 +19,7 @@ from main import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('admin/', admin.site.urls, name='admin'),
+    # path('admin/', admin.site.urls, name='admin'),
     path('temperature', views.temperature_now, name='temperature'),
     path('math/', views.math, name='math'),
     path('energy/', views.energy_now, name='energy'),
