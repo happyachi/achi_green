@@ -65,9 +65,6 @@ def temperature_now(request):
     p_json_data = re.urlopen(p_api_url).read().decode("utf-8")  # 抓JSON資料回來
     p_data = json.loads(p_json_data)   #字串變字典
     p_uri = p_data["cwbopendata"]["dataset"]["resource"]["uri"]    # uri
-    r=requests.get(p_uri)
-    
-    image_name = './static/images/'+ str(date_time_2[1])+str(date_time_2[2])+'.jpg'
 
     return render(request, 'temperature.html', locals())
 
@@ -175,9 +172,8 @@ def energy_now(request):
 
 def energy_history(request):
     # 開啟檔案，取出整點list
-    with open("main/jsons/final.json", "r",encoding="utf-8-sig") as f:
-        data = f.read()
-    list = json.loads(data)   # 字串變list
+    json_data = re.urlopen("https://storage.googleapis.com/achi-green.appspot.com/jsons/final.json").read().decode("utf-8")  # 抓JSON資料回來
+    list = json.loads(json_data)   # 字串變list
 
     # 轉為製圖用數據
     df =pd.read_json("main/jsons/final.json")   # 透過pandas開啟
