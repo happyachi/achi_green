@@ -18,8 +18,6 @@ from django.urls import path, include
 from main import views
 
 urlpatterns = [
-    path('django_plotly_dash/', include('django_plotly_dash.urls')),
-
     path('', views.index, name='index'),
     path('admin/', admin.site.urls, name='admin'),
     path('temperature', views.temperature_now, name='temperature'),
