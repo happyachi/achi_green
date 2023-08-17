@@ -176,7 +176,7 @@ def energy_history(request):
     list = json.loads(json_data)   # 字串變list
 
     # 轉為製圖用數據
-    df =pd.read_json("main/jsons/final.json")   # 透過pandas開啟
+    df =pd.read_json("https://storage.googleapis.com/achi-green.appspot.com/jsons/final.json")   # 透過pandas開啟
     fig_list = []
     for i in range(1, 11):  
         fig = go.Figure([go.Scatter(x=df[0], y=df[i])])
